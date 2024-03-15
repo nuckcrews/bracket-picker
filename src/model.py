@@ -22,7 +22,7 @@ class OpenAIModel:
             messages=messages,
             tools=tools,
             tool_choice="auto",
-            temperature=0.5,
+            temperature=0.6,
         )
 
         response_message = response.choices[0].message
