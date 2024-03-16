@@ -1,4 +1,5 @@
 import os
+import json
 from openai import OpenAI
 import boto3 as boto
 from src import Bracket
@@ -7,11 +8,13 @@ REQUEST_HANDLED = {"statusCode": 200}
 
 
 def execute(event, context):
+    print(event)
+    print(context)
     if event["requestContext"]["eventType"] == "CONNECT":
         return REQUEST_HANDLED
     elif event["requestContext"]["eventType"] == "DISCONNECT":
         return REQUEST_HANDLED
-    elif event["requestContext"]["eventType"] != "PROMPT":
+    elif event["requestContext"]["eventType"] != "MESSAGE":
         raise ValueError("Invalid event type")
 
     client = OpenAI()
@@ -21,14 +24,15 @@ def execute(event, context):
     else:
         raise ValueError("OPENAI_API_KEY is not set")
 
-    prompt = event["prompt"]
-    connection_id = event["connectionId"]
+    body = json.loads(event["body"])
+    prompt = body["prompt"]
+    connection_id = event["requestContext"]["connectionId"]
     bracket = Bracket(client, prompt)
 
     def callback(round, winners):
         print("\nRound", round)
         print(winners)
-        send_ws_message(connection_id, winners)
+        send_ws_message(connection_id, json.dumps(winners))
 
     bracket.generate_bracket(callback)
 
@@ -37,8 +41,8 @@ def execute(event, context):
     print("Bracket Picker is done!")
     return REQUEST_HANDLED
 
+endpoint = os.environ["WEBSOCKET_API_ENDPOINT"]
+api = boto.client("apigatewaymanagementapi", endpoint_url=endpoint)
 
 def send_ws_message(connection_id, data):
-    endpoint = os.environ["WEBSOCKET_API_ENDPOINT"]
-    api = boto.client("apigatewaymanagementapi", endpoint_url=endpoint)
     return api.post_to_connection(ConnectionId=connection_id, Data=data.encode("utf-8"))
