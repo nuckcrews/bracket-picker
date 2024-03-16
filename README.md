@@ -72,13 +72,13 @@ If you don’t have Python installed, [install it from here](https://www.python.
 5. Create docker tag
 
    ```bash
-   $ docker tag ${DOCKER_IMAGE}:latest ${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${DOCKER_IMAGE}:latest
+   $ docker tag ${DOCKER_IMAGE}:latest ${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${DOCKER_IMAGE_REPO}:latest
    ```
 
 6. Push docker image
 
    ```bash
-   $ docker push ${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${DOCKER_IMAGE}:latest
+   $ docker push ${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${DOCKER_IMAGE_REPO}:latest
    ```
 
 For more information on deployments, refer to the [deployment docs](https://docs.aws.amazon.com/lambda/latest/dg/python-image.html#python-image-create).
