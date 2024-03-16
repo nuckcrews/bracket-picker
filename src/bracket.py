@@ -17,21 +17,21 @@ class Bracket:
     def generate_bracket(self, callback):
         while self.current_round <= self.rounds:
             winners = self._pick_round(self.current_round)
-            self._add_round_winners(winners)
+            self._add_round_winners(self.current_round, winners)
             callback(self.current_round, winners)
             self.current_round += 1
 
     def _system_message(self):
         return {
             "role": "system",
-            "content": "You are a highly intelligent college basketball fan. You have been selected to fill out a bracket for another fan based on their prompt. Always use the provided function to add your picks for the round.",
+            "content": "You are a highly intelligent college basketball fan. You have been selected to fill out a bracket for another fan based on their prompt. Always output all of the winners of the current round. Always use the provided function to add your picks for the round.",
         }
 
     def _bracket_message(self):
-        return {"role": "system", "content": f"Tournament Bracket:\m{MensTournament()}"}
+        return {"role": "system", "content": f"Start of Tournament Bracket:\m{MensTournament()}"}
 
     def _user_prompt(self):
-        return {"role": "user", "content": self.prompt}
+        return {"role": "user", "content": "User Bracket Prompt: " + self.prompt}
 
     def _pick_round(self, round):
         messages = [
@@ -43,7 +43,7 @@ class Bracket:
         messages.append(
             {
                 "role": "user",
-                "content": "What are your picks for this next round? Add your picks to the add_picks function.",
+                "content": f"What are your picks for next round ({round})? Add your picks to the add_picks function.",
             }
         )
         functions = self._functions()
@@ -51,11 +51,11 @@ class Bracket:
         picks = self._model.tool(messages, functions, tools)[0]
         return picks
 
-    def _add_round_winners(self, winners):
+    def _add_round_winners(self, round, winners):
         self.picks.append(
             {
                 "role": "assistant",
-                "content": "The winners of this round are: " + json.dumps(winners),
+                "content": f"The winners of round {round} are: " + json.dumps(winners),
             }
         )
 
