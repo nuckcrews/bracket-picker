@@ -42,20 +42,46 @@ If you don’t have Python installed, [install it from here](https://www.python.
     ```bash
     $ ./cli.sh
     ```
-## Server
 
-1. Generate a secret key
+## Lambda Deployment
+
+1. Build docker image
+
+   ``` bash
+   $ docker build --platform linux/arm64 -t ${DOCKER_IMAGE} .
+   ```
+
+2. Run docker image
 
    ```bash
-   $ python -c 'import secrets; print(secrets.token_hex())'
+   $ docker run --platform linux/arm64 --env-file=.env -p 9000:8080 --name ${DOCKER_CONTAINER} ${DOCKER_IMAGE}
    ```
-   Once generated, set the `FLASK_APP_SECRET_KEY` in your `.env` as the new value.
 
-2. Run the application
+3. Test function
 
    ```bash
-   $ python server.py
+   $ curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{}'
    ```
+
+4. Login to aws ecr
+
+   ```bash
+   $ aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
+   ```
+
+5. Create docker tag
+
+   ```bash
+   $ docker tag ${DOCKER_IMAGE}:latest ${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${DOCKER_IMAGE}:latest
+   ```
+
+6. Push docker image
+
+   ```bash
+   $ docker push ${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${DOCKER_IMAGE}:latest
+   ```
+
+For more information on deployments, refer to the [deployment docs](https://docs.aws.amazon.com/lambda/latest/dg/python-image.html#python-image-create).
 
 ## Contributing
 
