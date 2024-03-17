@@ -32,7 +32,10 @@ def execute(event, context):
     def callback(round, winners):
         print("\nRound", round)
         print(winners)
-        send_ws_message(connection_id, json.dumps(winners))
+        send_ws_message(connection_id, json.dumps({
+            "round": round,
+            "winners": winners
+        }))
 
     bracket.generate_bracket(callback)
 
