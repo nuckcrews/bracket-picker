@@ -7,9 +7,10 @@ __all__ = ["Bracket"]
 
 class Bracket:
 
-    def __init__(self, client, prompt):
+    def __init__(self, client, prompt, token_callback=None):
         self._model = OpenAIModel(client)
         self.prompt = prompt
+        self.token_callback = token_callback
         self.current_round = 1
         self.rounds = 6
         self.picks = []
@@ -49,6 +50,9 @@ class Bracket:
         functions = self._functions()
         tools = self._tools()
         picks = self._model.tool(messages, functions, tools)[0]
+
+        if self.token_callback:
+            self.token_callback(json.dumps(messages) + json.dumps(picks))
         return picks
 
     def _add_round_winners(self, round, winners):
@@ -93,3 +97,42 @@ class Bracket:
 
     def _add_picks(self, picks):
         return picks
+
+# For a one timer
+    #  {
+    #             "type": "function",
+    #             "function": {
+    #                 "name": "add_picks",
+    #                 "description": "Add the picks for all the rounds in the tournament.",
+    #                 "parameters": {
+    #                     "type": "object",
+    #                     "properties": {
+    #                         "rounds": {
+    #                             "type": "array",
+    #                             "items": {
+    #                                 "type": "object",
+    #                                 "properties": {
+    #                                     "round": {"type": "number"},
+    #                                     "picks": {
+    #                                         "type": "array",
+    #                                         "items": {
+    #                                             "type": "object",
+    #                                             "properties": {
+    #                                                 "team": {"type": "string"},
+    #                                                 "rank": {"type": "number"},
+    #                                             },
+    #                                             "required": ["team", "rank"],
+    #                                             "description": "A team and their rank",
+    #                                         },
+    #                                     },
+    #                                 },
+    #                                 "description": "A round and the picks for that round",
+    #                                 "required": ["number", "picks"],
+    #                             },
+    #                         }
+    #                     },
+    #                     "description": "All the rounds in the tournament and the picks for each round",
+    #                     "required": ["rounds"],
+    #                 },
+    #             },
+    #         }

@@ -24,7 +24,7 @@ If you don’t have Python installed, [install it from here](https://www.python.
 4. Install the requirements
 
    ```bash
-   $ pip install -r requirements.txt
+   $ pip install -r cli_requirements.txt
    ```
 
 5. Make a copy of the example environment variables file
