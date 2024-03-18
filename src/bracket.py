@@ -25,7 +25,13 @@ class Bracket:
     def _system_message(self):
         return {
             "role": "system",
-            "content": "You are a highly intelligent college basketball fan. You have been selected to fill out a bracket for another fan based on their prompt. Always output all of the winners of the current round with the corresponding game number. The game number increments by 1 so the first game of the second round is 33. Always use the provided function to add your picks for the round and make sure to base your picks based on previous rounds.",
+            "content": "You are a highly intelligent college basketball fan. You have been selected to fill out a bracket for another fan based on their prompt. Always output all of the winners of the current round with the corresponding game number. The game number increments by 1 so the first game of the second round is 33. Always use the provided function to add your picks for the round and make sure to base your picks based on previous rounds. The picks must be valid.",
+        }
+
+    def _tournament_message(self):
+        return {
+            "role": "system",
+            "content": "Some information about the March Madness Tournament:\nRound 1=1; Round 2=2; Sweet 16=3; Elite 8=4; Final 4=5; Championship=6;\nIt is the end of season tournament for NCAA basketball",
         }
 
     def _bracket_message(self):
@@ -39,6 +45,7 @@ class Bracket:
 
     def _pick_round(self, round):
         messages = [
+            self._tournament_message(),
             self._system_message(),
             self._bracket_message(),
             self._user_prompt(),
