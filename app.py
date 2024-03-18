@@ -2,7 +2,7 @@ import os
 import json
 from openai import OpenAI
 import boto3 as boto
-from src import Bracket
+from src import Bracket, post_bracket
 
 REQUEST_HANDLED = {"statusCode": 200}
 
@@ -27,15 +27,28 @@ def execute(event, context):
     connection_id = event["requestContext"]["connectionId"]
     bracket = Bracket(client, prompt)
 
+    full_bracket = []
     def callback(round, tournament):
         send_ws_message(connection_id, json.dumps({
             "round": round,
             "tournament": tournament
         }))
+        nonlocal full_bracket
+        full_bracket = tournament
 
-    bracket.generate_bracket(callback)
+    try:
+        bracket.generate_bracket(callback)
 
-    send_ws_message(connection_id, "DONE")
+        id = post_bracket(prompt, full_bracket)
+    except Exception as e:
+        send_ws_message(connection_id, json.dumps({
+            "error": str(e)
+        }))
+        return REQUEST_HANDLED
+
+    send_ws_message(connection_id, json.dumps({
+        "bracket_id": id
+    }))
 
     print("Bracket Picker is done!")
     return REQUEST_HANDLED

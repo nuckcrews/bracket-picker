@@ -152,7 +152,7 @@ def MensTournament():
         {
             "game": 25,
             "team1": {"name": "Purdue", "seed": 1},
-            "team2": {"name": "Grambling/Montana St.", "seed": 16},
+            "team2": {"name": "Grambling/Mont St.", "seed": 16},
             "winner": "none",
         },
         {
