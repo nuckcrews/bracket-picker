@@ -8,8 +8,6 @@ REQUEST_HANDLED = {"statusCode": 200}
 
 
 def execute(event, context):
-    print(event)
-    print(context)
     if event["requestContext"]["eventType"] == "CONNECT":
         return REQUEST_HANDLED
     elif event["requestContext"]["eventType"] == "DISCONNECT":
@@ -29,12 +27,10 @@ def execute(event, context):
     connection_id = event["requestContext"]["connectionId"]
     bracket = Bracket(client, prompt)
 
-    def callback(round, winners):
-        print("\nRound", round)
-        print(winners)
+    def callback(round, tournament):
         send_ws_message(connection_id, json.dumps({
             "round": round,
-            "winners": winners
+            "tournament": tournament
         }))
 
     bracket.generate_bracket(callback)

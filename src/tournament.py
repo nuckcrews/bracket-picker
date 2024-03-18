@@ -4,135 +4,197 @@ __all__ = ["MensTournament"]
 
 
 def MensTournament():
-    return json.dumps(
-        [
-            {
-                "team1": {"name": "Duke", "seed": 1},
-                "team2": {"name": "North Dakota State", "seed": 16},
-            },
-            {
-                "team1": {"name": "VCU", "seed": 8},
-                "team2": {"name": "UCF", "seed": 9},
-            },
-            {
-                "team1": {"name": "Mississippi State", "seed": 5},
-                "team2": {"name": "Liberty", "seed": 12},
-            },
-            {
-                "team1": {"name": "Virginia Tech", "seed": 4},
-                "team2": {"name": "Saint Louis", "seed": 13},
-            },
-            {
-                "team1": {"name": "Maryland", "seed": 6},
-                "team2": {"name": "Belmont", "seed": 11},
-            },
-            {
-                "team1": {"name": "LSU", "seed": 3},
-                "team2": {"name": "Yale", "seed": 14},
-            },
-            {
-                "team1": {"name": "Louisville", "seed": 7},
-                "team2": {"name": "Minnesota", "seed": 10},
-            },
-            {
-                "team1": {"name": "Michigan State", "seed": 2},
-                "team2": {"name": "Bradley", "seed": 15},
-            },
-            {
-                "team1": {"name": "Gonzaga", "seed": 1},
-                "team2": {"name": "Fairleigh Dickinson", "seed": 16},
-            },
-            {
-                "team1": {"name": "Syracuse", "seed": 8},
-                "team2": {"name": "Baylor", "seed": 9},
-            },
-            {
-                "team1": {"name": "Marquette", "seed": 5},
-                "team2": {"name": "Murray State", "seed": 12},
-            },
-            {
-                "team1": {"name": "Florida State", "seed": 4},
-                "team2": {"name": "Vermont", "seed": 13},
-            },
-            {
-                "team1": {"name": "Buffalo", "seed": 6},
-                "team2": {"name": "Arizona State", "seed": 11},
-            },
-            {
-                "team1": {"name": "Texas Tech", "seed": 3},
-                "team2": {"name": "Northern Kentucky", "seed": 14},
-            },
-            {
-                "team1": {"name": "Nevada", "seed": 7},
-                "team2": {"name": "Florida", "seed": 10},
-            },
-            {
-                "team1": {"name": "Michigan", "seed": 2},
-                "team2": {"name": "Montana", "seed": 15},
-            },
-            {
-                "team1": {"name": "Virginia", "seed": 1},
-                "team2": {"name": "Gardner-Webb", "seed": 16},
-            },
-            {
-                "team1": {"name": "Ole Miss", "seed": 8},
-                "team2": {"name": "Oklahoma", "seed": 9},
-            },
-            {
-                "team1": {"name": "Wisconsin", "seed": 5},
-                "team2": {"name": "Oregon", "seed": 12},
-            },
-            {
-                "team1": {"name": "Kansas State", "seed": 4},
-                "team2": {"name": "UC Irvine", "seed": 13},
-            },
-            {
-                "team1": {"name": "Villanova", "seed": 6},
-                "team2": {"name": "Saint Mary's", "seed": 11},
-            },
-            {
-                "team1": {"name": "Purdue", "seed": 3},
-                "team2": {"name": "Old Dominion", "seed": 14},
-            },
-            {
-                "team1": {"name": "Cincinnati", "seed": 7},
-                "team2": {"name": "Iowa", "seed": 10},
-            },
-            {
-                "team1": {"name": "Tennessee", "seed": 2},
-                "team2": {"name": "Colgate", "seed": 15},
-            },
-            {
-                "team1": {"name": "North Carolina", "seed": 1},
-                "team2": {"name": "Iona", "seed": 16},
-            },
-            {
-                "team1": {"name": "Utah State", "seed": 8},
-                "team2": {"name": "Washington", "seed": 9},
-            },
-            {
-                "team1": {"name": "Auburn", "seed": 5},
-                "team2": {"name": "New Mexico State", "seed": 12},
-            },
-            {
-                "team1": {"name": "Kansas", "seed": 4},
-                "team2": {"name": "Northeastern", "seed": 13},
-            },
-            {
-                "team1": {"name": "Iowa State", "seed": 6},
-                "team2": {"name": "Ohio State", "seed": 11},
-            },
-            {
-                "team1": {"name": "Houston", "seed": 3},
-                "team2": {"name": "Georgia State", "seed": 14},
-            },
-            {
-                "team1": {"name": "Wofford", "seed": 7},
-                "team2": {"name": "Seton Hall", "seed": 10},
-            },
-            {
-                "team1": {"name": "Kentucky", "seed": 2},
-                "team2": {"name": "Abilene Christian", "seed": 15},
-            },
-        ]
-    )
+    return [
+        {
+            "game": 1,
+            "team1": {"name": "UConn", "seed": 1},
+            "team2": {"name": "Stetson", "seed": 16},
+            "winner": "none",
+        },
+        {
+            "game": 2,
+            "team1": {"name": "FAU", "seed": 8},
+            "team2": {"name": "Northwestern", "seed": 9},
+            "winner": "none",
+        },
+        {
+            "game": 3,
+            "team1": {"name": "Sand Diego St.", "seed": 5},
+            "team2": {"name": "UAB", "seed": 12},
+            "winner": "none",
+        },
+        {
+            "game": 4,
+            "team1": {"name": "Auburn", "seed": 4},
+            "team2": {"name": "Yale", "seed": 13},
+            "winner": "none",
+        },
+        {
+            "game": 5,
+            "team1": {"name": "BYU", "seed": 6},
+            "team2": {"name": "Duquesne", "seed": 11},
+            "winner": "none",
+        },
+        {
+            "game": 6,
+            "team1": {"name": "Illinois", "seed": 3},
+            "team2": {"name": "Morehead St.", "seed": 14},
+            "winner": "none",
+        },
+        {
+            "game": 7,
+            "team1": {"name": "Washington St.", "seed": 7},
+            "team2": {"name": "Drake", "seed": 10},
+            "winner": "none",
+        },
+        {
+            "game": 8,
+            "team1": {"name": "Iowa St.", "seed": 2},
+            "team2": {"name": "South Dakota St.", "seed": 15},
+            "winner": "none",
+        },
+        {
+            "game": 9,
+            "team1": {"name": "North Carolina", "seed": 1},
+            "team2": {"name": "Howard/Wagner", "seed": 16},
+            "winner": "none",
+        },
+        {
+            "game": 10,
+            "team1": {"name": "Mississippi St.", "seed": 8},
+            "team2": {"name": "Michigan St.", "seed": 9},
+            "winner": "none",
+        },
+        {
+            "game": 11,
+            "team1": {"name": "Saint Mary's", "seed": 5},
+            "team2": {"name": "Grand Canyon", "seed": 12},
+            "winner": "none",
+        },
+        {
+            "game": 12,
+            "team1": {"name": "Alabama", "seed": 4},
+            "team2": {"name": "Charleston", "seed": 13},
+            "winner": "none",
+        },
+        {
+            "game": 13,
+            "team1": {"name": "Clemson", "seed": 6},
+            "team2": {"name": "New Mexico", "seed": 11},
+            "winner": "none",
+        },
+        {
+            "game": 14,
+            "team1": {"name": "Baylor", "seed": 3},
+            "team2": {"name": "Colgate", "seed": 14},
+            "winner": "none",
+        },
+        {
+            "game": 15,
+            "team1": {"name": "Dayton", "seed": 7},
+            "team2": {"name": "Nevada", "seed": 10},
+            "winner": "none",
+        },
+        {
+            "game": 16,
+            "team1": {"name": "Arizona", "seed": 2},
+            "team2": {"name": "Long Beach St.", "seed": 15},
+            "winner": "none",
+        },
+        {
+            "game": 17,
+            "team1": {"name": "Houston", "seed": 1},
+            "team2": {"name": "Longwood", "seed": 16},
+            "winner": "none",
+        },
+        {
+            "game": 18,
+            "team1": {"name": "Nebraska", "seed": 8},
+            "team2": {"name": "Texas A&M", "seed": 9},
+            "winner": "none",
+        },
+        {
+            "game": 19,
+            "team1": {"name": "Wisconsin", "seed": 5},
+            "team2": {"name": "James Madison", "seed": 12},
+            "winner": "none",
+        },
+        {
+            "game": 20,
+            "team1": {"name": "Duke", "seed": 4},
+            "team2": {"name": "Vermont", "seed": 13},
+            "winner": "none",
+        },
+        {
+            "game": 21,
+            "team1": {"name": "Texas Tech", "seed": 6},
+            "team2": {"name": "NC State", "seed": 11},
+            "winner": "none",
+        },
+        {
+            "game": 22,
+            "team1": {"name": "Kentucky", "seed": 3},
+            "team2": {"name": "Oakland", "seed": 14},
+            "winner": "none",
+        },
+        {
+            "game": 23,
+            "team1": {"name": "Florida", "seed": 7},
+            "team2": {"name": "Colorado/Boise St.", "seed": 10},
+            "winner": "none",
+        },
+        {
+            "game": 24,
+            "team1": {"name": "Marquette", "seed": 2},
+            "team2": {"name": "Western Ky.", "seed": 15},
+            "winner": "none",
+        },
+        {
+            "game": 25,
+            "team1": {"name": "Purdue", "seed": 1},
+            "team2": {"name": "Grambling/Montana St.", "seed": 16},
+            "winner": "none",
+        },
+        {
+            "game": 26,
+            "team1": {"name": "Utah St.", "seed": 8},
+            "team2": {"name": "TCU", "seed": 9},
+            "winner": "none",
+        },
+        {
+            "game": 27,
+            "team1": {"name": "Gonzaga", "seed": 5},
+            "team2": {"name": "McNeese", "seed": 12},
+            "winner": "none",
+        },
+        {
+            "game": 28,
+            "team1": {"name": "Kansas", "seed": 4},
+            "team2": {"name": "Samford", "seed": 13},
+            "winner": "none",
+        },
+        {
+            "game": 29,
+            "team1": {"name": "South Carolina", "seed": 6},
+            "team2": {"name": "Oregon", "seed": 11},
+            "winner": "none",
+        },
+        {
+            "game": 30,
+            "team1": {"name": "Creighton", "seed": 3},
+            "team2": {"name": "Akron", "seed": 14},
+            "winner": "none",
+        },
+        {
+            "game": 31,
+            "team1": {"name": "Texas", "seed": 7},
+            "team2": {"name": "Colorado St./Virginia", "seed": 10},
+            "winner": "none",
+        },
+        {
+            "game": 32,
+            "team1": {"name": "Tennessee", "seed": 2},
+            "team2": {"name": "Sain Peter's", "seed": 15},
+            "winner": "none",
+        },
+    ]
