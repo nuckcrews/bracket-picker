@@ -41,7 +41,7 @@ class Bracket:
         }
 
     def _user_prompt(self):
-        return {"role": "user", "content": "User Bracket Prompt: " + self.prompt}
+        return {"role": "user", "content": "User Prompt: " + self.prompt}
 
     def _pick_round(self, round):
         messages = [
@@ -54,7 +54,7 @@ class Bracket:
         messages.append(
             {
                 "role": "user",
-                "content": f"What are your picks for the next round ({round}) based on the results from the previous rounds? Add your picks to the add_picks function.",
+                "content": f"What are your picks for the next round ({round}) based on my prompt and the results from the previous rounds? Add your picks to the add_picks function.",
             }
         )
         functions = self._functions()
@@ -64,14 +64,6 @@ class Bracket:
         if self.token_callback:
             self.token_callback(json.dumps(messages) + json.dumps(new_bracket))
         return new_bracket
-
-    def _add_round_winners(self, round, winners):
-        self.picks.append(
-            {
-                "role": "assistant",
-                "content": f"The winners of round {round} are: " + json.dumps(winners),
-            }
-        )
 
     def _functions(self):
         return {"add_picks": self._add_picks}
